@@ -17,6 +17,7 @@ package com.example.android.sunshine;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
@@ -39,10 +40,9 @@ import com.example.android.sunshine.sync.SunshineSyncUtils;
  */
 public class SettingsFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener {
-
     private void setPreferenceSummary(Preference preference, Object value) {
         String stringValue = value.toString();
-
+        System.out.println("setPreferenceSummary :: "+stringValue);
         if (preference instanceof ListPreference) {
             // For list preferences, look up the correct display value in
             // the preference's 'entries' list (since they have separate labels/values).
@@ -99,6 +99,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             // Wipe out any potential PlacePicker latlng values so that we can use this text entry.
             SunshinePreferences.resetLocationCoordinates(activity);
             SunshineSyncUtils.startImmediateSync(activity);
+
         } else if (key.equals(getString(R.string.pref_units_key))) {
             // units have changed. update lists of weather entries accordingly
             activity.getContentResolver().notifyChange(WeatherContract.WeatherEntry.CONTENT_URI, null);

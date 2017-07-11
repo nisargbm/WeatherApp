@@ -144,6 +144,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
             case VIEW_TYPE_TODAY:
                 weatherImageId = SunshineWeatherUtils
                         .getLargeArtResourceIdForWeatherCondition(weatherId);
+
                 break;
 
             case VIEW_TYPE_FUTURE_DAY:
@@ -167,7 +168,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
 
          /* Display friendly date string */
         forecastAdapterViewHolder.dateView.setText(dateString);
-
+        //forecastAdapterViewHolder.placeView.setText(SettingsFragment.placeValue);
         /***********************
          * Weather Description *
          ***********************/
@@ -271,10 +272,10 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
         final TextView descriptionView;
         final TextView highTempView;
         final TextView lowTempView;
-
+        final TextView placeView;
         ForecastAdapterViewHolder(View view) {
             super(view);
-
+            placeView = (TextView)view.findViewById(R.id.date1);
             iconView = (ImageView) view.findViewById(R.id.weather_icon);
             dateView = (TextView) view.findViewById(R.id.date);
             descriptionView = (TextView) view.findViewById(R.id.weather_description);
